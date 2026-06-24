@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ishita Tyagi – SWE Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D1117;--surface:#161B22;--surface2:#21262D;
+  --border:#30363D;--accent:#2F80ED;--accent2:#56CCF2;
+  --text:#E6EDF3;--muted:#8B949E;--green:#3FB950;--purple:#A78BFA;
+  --font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;
+}
+.nav-logo{font-family:var(--font-mono);font-size:14px;color:var(--accent);font-weight:500}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:13px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  font-size:12px;font-family:var(--font-mono);
+  border:1px solid var(--accent);color:var(--accent);
+  padding:5px 14px;border-radius:4px;cursor:pointer;transition:background .2s;background:transparent;
+}
+.nav-cta:hover{background:rgba(47,128,237,.12)}
+
+section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+hr.divider{border:none;border-top:1px solid var(--border);max-width:900px;margin:0 auto}
+
+/* HERO */
+.hero{padding:7rem 2rem 5rem;max-width:900px;margin:0 auto}
+.status-dot{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--font-mono);font-size:11px;color:var(--green);
+  background:rgba(63,185,80,.08);border:1px solid rgba(63,185,80,.2);
+  padding:3px 10px;border-radius:20px;margin-bottom:1.5rem;
+}
+.status-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-eyebrow{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.hero-eyebrow .gt{color:var(--green)}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.03em;margin-bottom:.75rem}
+h1 .accent{color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:1.5rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.hero-pill{
+  font-family:var(--font-mono);font-size:11px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--muted);padding:3px 10px;border-radius:20px;
+}
+.hero-pill.hl{color:var(--accent);border-color:rgba(47,128,237,.3);background:rgba(47,128,237,.06)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{
+  background:var(--accent);color:#fff;border:none;
+  padding:10px 22px;border-radius:6px;font-size:14px;font-weight:500;cursor:pointer;transition:opacity .2s;
+}
+.btn-primary:hover{opacity:.85}
+.btn-secondary{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);padding:10px 22px;
+  border-radius:6px;font-size:14px;cursor:pointer;transition:border-color .2s;
+}
+.btn-secondary:hover{border-color:var(--accent)}
+
+/* SECTION */
+.section-header{margin-bottom:2.5rem}
+.section-eyebrow{font-family:var(--font-mono);font-size:12px;color:var(--accent);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+.section-eyebrow::before{content:'//';color:var(--muted)}
+h2{font-size:1.6rem;font-weight:600;letter-spacing:-.02em}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:14px}
+.about-text strong{color:var(--text)}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.stat-num{font-size:1.5rem;font-weight:600;color:var(--accent);font-family:var(--font-mono)}
+.stat-label{font-size:12px;color:var(--muted);margin-top:.2rem}
+.cf-badge{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-family:var(--font-mono);font-size:11px;
+  background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);
+  color:var(--purple);padding:3px 10px;border-radius:4px;margin-top:.75rem;
+}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}
+.skill-group{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.skill-group-title{font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.35rem}
+.skill-pill{font-size:11px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:2px 8px;border-radius:4px}
+
+/* PROJECTS */
+.projects-grid{display:grid;gap:1rem}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:1.5rem;transition:border-color .2s,transform .2s;
+}
+.project-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.project-card.featured{border-color:rgba(47,128,237,.35)}
+.project-name{font-size:1rem;font-weight:600;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.project-subtitle{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:.75rem}
+.project-badges{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.75rem}
+.badge{font-family:var(--font-mono);font-size:10px;padding:2px 7px;border-radius:3px;background:rgba(47,128,237,.1);color:var(--accent);border:1px solid rgba(47,128,237,.2)}
+.badge.green{background:rgba(63,185,80,.1);color:var(--green);border-color:rgba(63,185,80,.2)}
+.badge.purple{background:rgba(167,139,250,.1);color:var(--purple);border-color:rgba(167,139,250,.2)}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:.75rem}
+.project-desc li{margin-bottom:.3rem;padding-left:.25rem}
+.project-metrics{display:flex;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:.75rem}
+.metric{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.metric span{color:var(--accent);font-weight:500}
+.project-links{display:flex;gap:.5rem;margin-top:.75rem}
+.proj-link{font-size:12px;color:var(--muted);border:1px solid var(--border);padding:3px 10px;border-radius:4px;transition:color .2s,border-color .2s}
+.proj-link:hover{color:var(--accent);border-color:var(--accent)}
+.proj-header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.35rem}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:1.5rem;border-left:1px solid var(--border)}
+.timeline-item{margin-bottom:2rem;position:relative}
+.timeline-item::before{
+  content:'';position:absolute;left:-1.59rem;top:6px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent);border:2px solid var(--bg);
+}
+.tl-date{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-bottom:.2rem}
+.tl-title{font-weight:600;font-size:15px;margin-bottom:.1rem}
+.tl-org{font-size:13px;color:var(--accent);margin-bottom:.5rem}
+.tl-desc{font-size:13px;color:var(--muted);line-height:1.75;padding-left:1rem}
+.tl-desc li{margin-bottom:.3rem}
+
+/* ACHIEVEMENTS */
+.achieve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.achieve-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem;display:flex;gap:.75rem;align-items:flex-start}
+.achieve-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+.achieve-title{font-weight:500;font-size:14px;margin-bottom:.25rem}
+.achieve-sub{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* CONTACT */
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;text-align:center}
+.contact-card h3{font-size:1.4rem;font-weight:600;margin-bottom:.5rem}
+.contact-card p{color:var(--muted);margin-bottom:1.5rem;font-size:14px;max-width:480px;margin-left:auto;margin-right:auto}
+.contact-links{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.contact-link{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);padding:8px 16px;border-radius:6px;font-size:13px;
+  transition:border-color .2s,color .2s;
+}
+.contact-link:hover{border-color:var(--accent);color:var(--accent)}
+
+footer{border-top:1px solid var(--border);text-align:center;padding:2rem;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+
+@media(max-width:620px){
+  .about-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  h1{font-size:1.9rem}
+  .proj-header-row{flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">~/ishita-tyagi</span>
+  <div class="nav-links">
+    <a href="#about">about</a>
+    <a href="#skills">skills</a>
+    <a href="#projects">projects</a>
+    <a href="#experience">experience</a>
+    <a href="#achievements">achievements</a>
+    <a href="#contact">contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">hire me</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="status-dot">open to SWE internships · Summer 2027</div>
+  <div class="hero-eyebrow"><span class="gt">&gt;</span> IIT Jodhpur · CSE · CGPA 9.20 · Codeforces Specialist</div>
+  <h1>Systems that <span class="accent">scale</span>.<br/>Code that ships.</h1>
+  <p class="hero-sub">
+    Second-year CSE undergrad at IIT Jodhpur building distributed systems, ML pipelines, and backend infrastructure. I've engineered production-grade software with measurable impact — from version-controlled SQL engines to real-time computer vision on edge hardware.
+  </p>
+  <div class="hero-pills">
+    <span class="hero-pill hl">distributed systems</span>
+    <span class="hero-pill hl">C++ · Python · Java</span>
+    <span class="hero-pill hl">Kafka · PostgreSQL · Redis</span>
+    <span class="hero-pill">concurrency</span>
+    <span class="hero-pill">ML pipelines</span>
+    <span class="hero-pill">system design</span>
+    <span class="hero-pill">CF 1430</span>
+  </div>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View projects</button>
+    <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <div class="section-eyebrow">about me</div>
+    <h2>The engineer behind the systems</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a second-year CS student at <strong>IIT Jodhpur</strong>, one of India's premier institutes, with a CGPA of <strong>9.20/10</strong>. My focus is on building systems that are correct under concurrency, performant at scale, and robust under failure.
+      </p>
+      <p>
+        I've built a <strong>distributed systems simulator</strong> modeling chaos under real failure modes, a <strong>version-controlled SQL workbench</strong> with Kafka-backed rollbacks, and a <strong>computer vision pipeline</strong> running on edge hardware — work that progressed to patent filing.
+      </p>
+      <p>
+        I'm a <strong>Codeforces Specialist (1430)</strong> with 300+ problems solved across graphs, DP, and data structures. Currently targeting Google, Meta, and Amazon SWE internships for Summer 2027.
+      </p>
+      <div class="cf-badge">⚡ Codeforces: ishita_0301 · 1430 rating</div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">9.20</div>
+        <div class="stat-label">CGPA at IIT Jodhpur</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1430</div>
+        <div class="stat-label">Codeforces rating (Specialist)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">300+</div>
+        <div class="stat-label">competitive programming problems</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3rd</div>
+        <div class="stat-label">Inter IIT Tech Meet 14.0 (23 teams)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <div class="section-eyebrow">technical skills</div>
+    <h2>What I work with</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-pills">
+        <span class="skill-pill">C++</span><span class="skill-pill">Python</span>
+        <span class="skill-pill">Java</span><span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">TypeScript</span><span class="skill-pill">SQL</span>
+        <span class="skill-pill">Go</span><span class="skill-pill">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Systems &amp; Infra</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Distributed Systems</span>
+        <span class="skill-pill">Concurrency</span>
+        <span class="skill-pill">Apache Kafka</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">Redis</span>
+        <span class="skill-pill">Docker</span>
+        <span class="skill-pill">AWS S3</span>
+        <span class="skill-pill">CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Backend &amp; APIs</div>
+      <div class="skill-pills">
+        <span class="skill-pill">FastAPI</span><span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Django</span><span class="skill-pill">REST APIs</span>
+        <span class="skill-pill">gRPC</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">ML &amp; CV</div>
+      <div class="skill-pills">
+        <span class="skill-pill">PyTorch</span><span class="skill-pill">OpenCV</span>
+        <span class="skill-pill">YOLOv5/v8</span><span class="skill-pill">MediaPipe</span>
+        <span class="skill-pill">Model Quantization</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">CS Fundamentals</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Algorithms &amp; DSA</span>
+        <span class="skill-pill">OS</span><span class="skill-pill">Computer Networks</span>
+        <span class="skill-pill">DBMS</span><span class="skill-pill">OOP</span>
+        <span class="skill-pill">System Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Coursework (all A/A-)</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Pattern Recognition &amp; ML</span>
+        <span class="skill-pill">DSA</span><span class="skill-pill">Prob &amp; Stats</span>
+        <span class="skill-pill">Software Eng.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-eyebrow">projects</div>
+    <h2>Things I've built</h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- SimRUN -->
+    <div class="project-card featured">
+      <div class="proj-header-row">
+        <div>
+          <div class="project-name">⚙️ SimRUN — Distributed Systems Simulator</div>
+          <div class="project-subtitle">C++ · OOP · DSA · System Design · Networks · Jan 2026 – Present</div>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/ishita-0301" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-badges">
+        <span class="badge">C++</span><span class="badge">OOP</span><span class="badge">System Design</span>
+        <span class="badge">Distributed Systems</span><span class="badge green">Active</span>
+      </div>
+      <ul class="project-desc" style="padding-left:1rem">
+        <li>Visual engine modeling <strong style="color:var(--text)">3+ architectures</strong> (microservices, P2P, IoT) across 10+ dynamically allocated nodes with 5+ real failure modes.</li>
+        <li>Configurable chaos-testing framework forecasting <strong style="color:var(--text)">P50 &amp; P99 latency</strong> and SLO violations (&lt;5%) across 100+ simulated scenarios.</li>
+        <li>Event queues and topology-aware routing for throughput and recovery analysis — built from scratch, no simulation libraries.</li>
+      </ul>
+      <div class="project-metrics">
+        <span class="metric">Architectures: <span>3+</span></span>
+        <span class="metric">Failure modes: <span>5+</span></span>
+        <span class="metric">Simulated scenarios: <span>100+</span></span>
+        <span class="metric">SLO violation target: <span>&lt;5%</span></span>
+      </div>
+    </div>
+
+    <!-- WAVE-DB -->
+    <div class="project-card featured">
+      <div class="proj-header-row">
+        <div>
+          <div class="project-name">🗄️ WAVE-DB — Version-Controlled SQL Workbench</div>
+          <div class="project-subtitle">PostgreSQL · Kafka · FastAPI · Redis · AWS S3 · Jan 2026 – Present</div>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/ishita-0301" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-badges">
+        <span class="badge">PostgreSQL</span><span class="badge">Apache Kafka</span>
+        <span class="badge">FastAPI</span><span class="badge">Redis</span><span class="badge">AWS S3</span>
+        <span class="badge green">Active</span>
+      </div>
+      <ul class="project-desc" style="padding-left:1rem">
+        <li>Rollback engine versioning <strong style="color:var(--text)">100% of write operations</strong> via inverse query generation across concurrent multi-user sessions.</li>
+        <li>Kafka pipeline under 50+ concurrent requests cut rollback latency by <strong style="color:var(--text)">~60%</strong>; Redis delivers sub-millisecond cache for high-concurrency reads.</li>
+        <li>AWS S3 integration reduced storage costs by <strong style="color:var(--text)">~75%</strong>.</li>
+      </ul>
+      <div class="project-metrics">
+        <span class="metric">Rollback latency reduction: <span>~60%</span></span>
+        <span class="metric">Storage cost reduction: <span>~75%</span></span>
+        <span class="metric">Concurrent requests tested: <span>50+</span></span>
+        <span class="metric">Write coverage: <span>100%</span></span>
+      </div>
+    </div>
+
+    <!-- Martian Rover -->
+    <div class="project-card">
+      <div class="proj-header-row">
+        <div>
+          <div class="project-name">🤖 Computer Vision-Aided Martian Rover</div>
+          <div class="project-subtitle">Python · YOLOv5 · PyTorch · OpenCV · Raspberry Pi · Aug – Dec 2025</div>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/ishita-0301" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-badges">
+        <span class="badge">PyTorch</span><span class="badge">YOLOv5</span>
+        <span class="badge">OpenCV</span><span class="badge">MediaPipe</span>
+        <span class="badge purple">Edge ML</span>
+      </div>
+      <ul class="project-desc" style="padding-left:1rem">
+        <li>Real-time gesture recognition and object detection on Raspberry Pi via model pruning and 8-bit integer quantization; achieved <strong style="color:var(--text)">~30% reduction</strong> in inference latency.</li>
+        <li>Pipeline parallelism for autonomous navigation; camera calibration and confidence-threshold tuning for robustness under noisy lighting.</li>
+      </ul>
+      <div class="project-metrics">
+        <span class="metric">Inference latency reduction: <span>~30%</span></span>
+        <span class="metric">Hardware: <span>Raspberry Pi (edge)</span></span>
+        <span class="metric">Quantization: <span>INT8</span></span>
+      </div>
+    </div>
+
+    <!-- Peer-Link -->
+    <div class="project-card">
+      <div class="proj-header-row">
+        <div>
+          <div class="project-name">🔗 Peer-Link — P2P Network Simulation</div>
+          <div class="project-subtitle">Python · TCP Sockets · Multithreading · Nov – Dec 2024</div>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/ishita-0301" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project-badges">
+        <span class="badge">Python</span><span class="badge">TCP Sockets</span>
+        <span class="badge">Multithreading</span><span class="badge">Networking</span>
+      </div>
+      <ul class="project-desc" style="padding-left:1rem">
+        <li>Decentralized P2P network from scratch using raw TCP sockets and multithreading; SHA-hash deduplication for exactly-once delivery.</li>
+        <li>Barabási–Albert scale-free topology; PING/PONG liveness with &lt;14s dead-peer eviction; handled <strong style="color:var(--text)">30% node churn</strong> with thread-safe concurrent connection management.</li>
+      </ul>
+      <div class="project-metrics">
+        <span class="metric">Dead-peer eviction: <span>&lt;14s</span></span>
+        <span class="metric">Node churn handled: <span>30%</span></span>
+        <span class="metric">Delivery guarantee: <span>exactly-once</span></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-eyebrow">experience &amp; education</div>
+    <h2>Where I've been</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="tl-date">Jun 2026 – Present</div>
+      <div class="tl-title">Developer Relations Intern</div>
+      <div class="tl-org">Exosphere</div>
+      <ul class="tl-desc">
+        <li>Grew developer engagement across GitHub, Discord, Reddit, and technical forums via 20+ threads on AI agents, open-source tools, and API docs — increased community activity by <strong style="color:var(--text)">~30%</strong>.</li>
+        <li>Produced 15+ educational posts on AI agent frameworks; synthesized developer feedback into actionable product recommendations adopted by the product team.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">Jul 2025 – Nov 2025</div>
+      <div class="tl-title">Undergraduate Research Intern</div>
+      <div class="tl-org">Dept. of CSE, IIT Jodhpur</div>
+      <ul class="tl-desc">
+        <li>Fine-tuned YOLOv8 and aggregated 10+ multi-source environmental features into end-to-end ML pipelines for real-time crop and nutrient recommendation.</li>
+        <li>Engineered RESTful backend services and CV-based intrusion detection system; achieved <strong style="color:var(--text)">~35% reduction</strong> in end-to-end latency.</li>
+        <li>Work progressed to <strong style="color:var(--text)">patent filing stage</strong> across 3+ experimentation cycles.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-date">May 2024 – Present</div>
+      <div class="tl-title">B.Tech, Computer Science &amp; Engineering</div>
+      <div class="tl-org">IIT Jodhpur · CGPA: 9.20 / 10</div>
+      <ul class="tl-desc">
+        <li>Relevant coursework: Pattern Recognition &amp; ML (A), DSA (A-), Maths for Computing (A), Probability &amp; Statistics (A-), Software Engineering (A-).</li>
+        <li>Currently in second year. Asst. Head of Tech Events; Student Guide mentoring freshers.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <div class="section-eyebrow">achievements</div>
+    <h2>Highlights</h2>
+  </div>
+  <div class="achieve-grid">
+    <div class="achieve-card">
+      <div class="achieve-icon">🥉</div>
+      <div>
+        <div class="achieve-title">Inter IIT Tech Meet 14.0 — 3rd place</div>
+        <div class="achieve-sub">National-level SAC competition among 23 IIT teams across India.</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">⚡</div>
+      <div>
+        <div class="achieve-title">Codeforces Specialist · 1430 rating</div>
+        <div class="achieve-sub">300+ problems solved in graphs, DP, and data structures.</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">🏆</div>
+      <div>
+        <div class="achieve-title">Semi-finalist — Code Wars, Prometeo IIT Jodhpur</div>
+        <div class="achieve-sub">Intra-IIT competitive programming contest.</div>
+      </div>
+    </div>
+    <div class="achieve-card">
+      <div class="achieve-icon">📄</div>
+      <div>
+        <div class="achieve-title">Patent Filing — ML Research</div>
+        <div class="achieve-sub">Computer vision and ML research progressed to patent filing stage at IIT Jodhpur.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card">
+    <h3>Let's build something at scale</h3>
+    <p>Actively seeking SWE internships for Summer 2027 at Google, Meta, Amazon and similar. I love hard engineering problems — reach out anytime.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:ishita03012005@gmail.com">✉ Email</a>
+      <a class="contact-link" href="https://linkedin.com/in/ishita-tyagi" target="_blank">in LinkedIn</a>
+      <a class="contact-link" href="https://github.com/ishita-0301" target="_blank">⌥ GitHub</a>
+      <a class="contact-link" href="https://codeforces.com/profile/ishita_0301" target="_blank">⚡ Codeforces</a>
+      <a class="contact-link" href="https://leetcode.com/u/_ishita_0301" target="_blank">LC LeetCode</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built with intention · Ishita Tyagi · IIT Jodhpur · 2026
+</footer>
+
+</body>
+</html>
